@@ -1,63 +1,87 @@
+// const priceKm = 0.21;
+
+// const formElem = document.getElementById("train-form");
+// console.log(formElem);
+
+// //Prelevo gli input del form
+// const inputUsername = document.getElementById("name");
+// const inputKm = document.getElementById("km");
+// const inputAge = document.getElementById("age");
+
+// //Prelevo gli elementi di input
+// const passengerNameElement = document.getElementById("nomefinale");
+// const finalpriceElement = document.getElementById("prezzofinale");
+// const ticketType = 0;
+// const trainCarousel = 0;
+// const ticketCode = 0;
+
+// // inputAge.addEventListener("change", function () {
+// //   const finalPrice = calcDiscount(inputAge.value, parseInt(inputKm.value), priceKm);
+// //   finalpriceElement.innerHTML = `<strong>Costo biglietto</strong><br />--- ${finalPrice.toFixed(2)}`;
+// // });
+
+// formElem.addEventListener("click", function (event) {
+//   event.preventDefault();
+//   const finalPrice = calcDiscount(inputAge.value, parseInt(inputKm.value), priceKm);
+//   finalpriceElement.innerHTML = `<strong>Costo biglietto</strong><br /> ${finalPrice.toFixed(2)}`;
+//   passengerName.innerHTML = `<strong>NOME PASSEGGERO</strong><br /> ${usernameElement}`;
+// });
+
+// function calcDiscount(ageID, distance, price) {
+//   let totalPrice;
+//   // Prelevo il valore dell'input solo dentro eventListener
+//   if (ageID === "1") {
+//     totalPrice = distance * price * 0.8; // 20% di sconto
+//   } else if (ageID === "2") {
+//     totalPrice = distance * price; // prezzo pieno
+//   } else if (ageID === "3") {
+//     totalPrice = distance * price * 0.6; // 40% di sconto
+//   }
+//   return totalPrice;
+// }
+
+// =====================================================================================
+
 const priceKm = 0.21;
-const discount20 = 20;
-const discount40 = 40;
+const formElem = document.getElementById("train-form");
+console.log(formElem);
 
 //Prelevo gli input del form
-const username = document.getElementById("username");
-const inputKm = document.getElementById("kmtodo");
-console.log(inputKm);
-const inputAge = document.getElementById("age");
-console.log(inputAge.value);
+const usernameInput = document.getElementById("name");
+const kmInput = document.getElementById("km");
+const ageInput = document.getElementById("age");
 
-const buttonElem = document.querySelector("button");
+//Prelevo gli elementi della card da compilare
+const usernameElem = document.querySelector("#ticket-final h6");
+const priceElem = document.querySelector("#ticket-final p");
 
-//Prelevo gli elementi di input
-const passengerName = username.value;
-const ticketType = 0;
-const trainCarousel = 0;
-const ticketCode = 0;
+// const passengerNameElement = document.getElementById("nomefinale");
+// const finalpriceElement = document.getElementById("prezzofinale");
 
-//prelevo i valori degli input
+// inputAge.addEventListener("change", function () {
+//   const finalPrice = calcDiscount(inputAge.value, parseInt(inputKm.value), priceKm);
+//   finalpriceElement.innerHTML = `<strong>Costo biglietto</strong><br />--- ${finalPrice.toFixed(2)}`;
+// });
 
-buttonElem.addEventListener("click", function () {
-  // Prelevo il valore dell'input solo dentro eventListener
-  const distanceTotal = parseInt(inputKm.value);
+formElem.addEventListener("click", function (event) {
+  event.preventDefault();
 
-  if (inputAge.value === "1") {
-    totalPrice = distanceTotal * priceKm * 0.8; // 20% di sconto
-  } else if (inputAge.value === "2") {
-    totalPrice = distanceTotal * priceKm; // prezzo pieno
-  } else if (inputAge.value === "3") {
-    totalPrice = distanceTotal * priceKm * 0.6; // 40% di sconto
-  }
+  const finalPrice = calcDiscount(ageInput.value, parseInt(kmInput.value), priceKm);
+  const name = usernameInput.value;
 
-  console.log(totalPrice);
-
-  return totalPrice;
+  priceElem.innerHTML = finalPrice.toFixed(2);
+  usernameElem.innerHTML = name;
 });
 
-// const totalPrice = distanceTotal * priceKm;
-// console.log("Il prezzo totale del viaggio è di" + " " + totalPrice);
-
-// //Blocco logico
-// console.log("====Calcolo degli sconti====");
-// const u18discount = (totalPrice * discount20) / 100;
-// console.log("Lo sconto se hai meno di 18 anni è di" + " " + u18discount);
-
-// const o65discount = (totalPrice * discount40) / 100;
-// console.log("Lo sconto se sei over 65 è di" + " " + o65discount);
-
-// console.log("====Calcolo prezzo scontato====");
-// const u18discountPrice = totalPrice - u18discount;
-// console.log("Prezzo del viaggio se hai meno di 18 anni è di" + " " + u18discountPrice);
-
-// const o65discountPrice = totalPrice - o65discount;
-// console.log("Prezzo del viaggio se hai più di 65 anni è di" + " " + o65discountPrice);
-
-// if (userAge < 18) {
-//   alert(`Ha diritto allo sconto under 18 - totale costo del biglietto ${u18discountPrice.toFixed(2)} €`);
-// } else if (userAge >= 65) {
-//   alert(`Ha diritto allo sconto over 65 - totale costo del biglietto ${o65discountPrice.toFixed(2)} €`);
-// } else {
-//   alert(`Non ha diritto allo sconto - il prezzo è di ${totalPrice.toFixed(2)} €`);
-// }
+function calcDiscount(ageID, distance, price) {
+  let totalPrice;
+  // Prelevo il valore dell'input solo dentro eventListener
+  if (ageID === "1") {
+    totalPrice = distance * price * 0.8; // 20% di sconto
+  } else if (ageID === "2") {
+    totalPrice = distance * price; // prezzo pieno
+  } else if (ageID === "3") {
+    totalPrice = distance * price * 0.6; // 40% di sconto
+  }
+  return totalPrice;
+}
